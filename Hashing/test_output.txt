@@ -1,0 +1,130 @@
+===== Testing compilation and error messages =====
+./part1test: line 31: 43510 Segmentation fault: 11  ./compute_hash >&tests/test1.out
+Test 1: compute_hash with no arguments should print usage message
+part1 T1: failed
+
+Test 2: compute_hash with one argument less than 0 should print error message
+part1 T2: passed
+
+Test 3: compute_hash with one argument greater than MAX_BLOCK_SIZE should print error message
+part1 T3: passed
+
+Test 4: redefining MAX_BLOCK_SIZE: error message should include new value
+part1 T4: failed
+
+Test 5: compute_hash with more than 2 argument should print error message
+part1 T5: passed
+
+===== Testing hash computation =====
+Test1: block_size = 6, Input is 6 bytes of value zero
+       expecting all zeros in hash
+
+User input: 
+
+ 0  0  0  0  0  0 
+       Computed: 00 00 00 00 00 00 
+       Expected: 00 00 00 00 00 00 
+test_hash T01: passed
+
+Test2: block_size = 6, Input is 6 bytes with all one values
+       expecting all ones (ff) in hash
+
+User input: 
+
+ -1  -1  -1  -1  -1  -1 
+       Computed: ff ff ff ff ff ff 
+       Expected: ff ff ff ff ff ff 
+test_hash T02: passed
+
+Test3: block_size = 6, Input is 12 bytes with all one values
+       expecting all zeros in hash
+
+User input: 
+
+ 0  0  0  0  0  0 
+       Computed: 00 00 00 00 00 00 
+       Expected: 00 00 00 00 00 00 
+test_hash T03: passed
+
+Test4: block_size = 6, Input is 9 bytes with all one values
+       expecting half zeros and half ones in hash
+
+User input: 
+
+ 0  0  0  -1  -1  -1 
+       Computed: 00 00 00 ff ff ff 
+       Expected: 00 00 00 ff ff ff 
+test_hash T04: passed
+
+Test5: block_size = 8, Input is from file small_no_newline
+
+User input: 
+
+ 0  0  0  0  8  8  8  8 
+       Computed: 00 00 00 00 08 08 08 08 
+       Expected: 00 00 00 00 08 08 08 08 
+test_hash T05: passed
+
+Test6: block_size = 8, Input is from file small_with_newline
+
+User input: 
+
+ 10  0  0  0  8  8  8  8 
+       Computed: 0a 00 00 00 08 08 08 08 
+       Expected: 0a 00 00 00 08 08 08 08 
+test_hash T06: passed
+
+Test7: block_size = 4, Input is from file small_no_newline
+
+User input: 
+
+ 8  8  8  8 
+       Computed: 08 08 08 08 
+       Expected: 08 08 08 08 
+test_hash T07: passed
+
+Test8: block_size = 16, Input is from file small_no_newline
+
+User input: 
+
+ 4  4  4  4  4  4  4  4  4  4  4  4  12  12  12  12 
+       Computed: 04 04 04 04 04 04 04 04 04 04 04 04 0c 0c 0c 0c 
+       Expected: 04 04 04 04 04 04 04 04 04 04 04 04 0c 0c 0c 0c 
+test_hash T08: passed
+
+Test9: block_size = 3, Input is from file small_no_newline
+
+User input: 
+
+ 106  103  13 
+       Computed: 6a 67 0d 
+       Expected: 6a 67 0d 
+test_hash T09: passed
+
+Test10: block_size = 1024, Input is from file a_tale_of_two_cities.txt
+
+User input: 
+
+ 56  34  -117  61  105  55  -70  -49  76  -45  101  29  -82  -7  -57  -56  -127  -88  -46  -44  -65  -27  -24  34  42  -68  -30  115  111  112  64  -111  100  56  83  -16  117  -20  13  109  -119  44  11  10  44  -6  28  25  -122  -42  60  -60  -106  16  -105  99  81  -97  34  45  102  56  124  36  47  119  27  -106  88  -37  10  -22  95  43  -9  -71  -25  6  -78  -71  -4  -56  53  86  -13  103  119  -104  -28  74  -69  23  -82  106  72  59  -30  29  -87  36  55  118  -53  -22  -113  13  87  88  -85  79  103  -61  -126  87  -86  -51  -9  14  81  -51  46  78  -101  -84  74  -122  91  -82  38  60  -52  120  -54  127  -127  72  17  -4  38  -91  -60  -21  -72  77  123  -102  65  91  127  111  1  -75  84  61  -39  -66  66  48  70  -3  88  71  26  -42  -92  70  -8  -16  35  112  -44  -25  7  15  90  -85  107  77  -20  5  -15  -56  -27  -49  59  -56  40  -107  87  25  -75  92  108  47  -92  47  -87  -58  63  -37  -42  -21  -49  87  -36  36  -109  26  -108  45  -28  33  -84  -49  100  3  64  1  -42  -107  -91  -102  110  -16  109  18  72  53  -119  -23  -88  77  -28  42  -64  -51  -4  -51  2  50  -14  -74  -43  42  -13  0  -57  31  27  -26  111  -10  -109  112  -83  24  83  -39  47  -21  -48  94  80  -96  -70  47  -83  58  -81  22  96  -24  38  -54  6  -48  10  -90  -56  49  -118  104  63  51  70  -31  17  -56  76  50  125  110  -39  93  -23  -76  -70  -3  31  16  -13  31  27  10  29  -41  119  9  -110  118  -33  -22  70  -74  -92  54  -16  -64  -99  -74  102  -72  63  -44  -13  111  -101  50  -92  86  -29  -105  -34  77  41  76  33  49  -39  69  36  -85  -36  85  -52  33  -124  -99  87  112  16  -43  80  111  46  127  30  113  16  -43  -64  84  49  -99  -20  -11  -29  -85  127  60  -16  -34  27  64  97  19  -115  -4  4  -71  91  45  99  98  -58  65  65  -70  58  113  11  3  69  -6  101  -100  -49  4  -114  -31  1  -97  1  -58  -104  78  101  0  -58  -68  -5  -55  75  14  -103  46  28  100  -104  112  27  -83  9  -54  -121  34  96  -124  29  16  75  -60  -26  -83  0  -29  -10  32  -61  107  -23  -94  21  -1  -128  39  93  -100  -91  34  63  55  35  -53  -83  -30  97  -13  125  -85  62  92  -50  -73  8  22  1  55  -73  -10  77  30  119  33  5  65  -78  -83  125  67  30  59  -55  -86  74  -64  -26  115  33  -48  -87  7  -118  -70  45  -20  -62  42  -55  -12  -66  90  37  19  40  118  77  -27  -66  22  87  -16  -49  -12  71  -53  96  -95  -123  -74  7  64  106  -109  -83  -89  -58  -77  94  -112  19  -11  -121  -7  23  39  59  -80  -64  42  127  -52  -13  43  -65  -57  1  103  83  -97  -102  -72  84  -72  -75  64  -110  -19  99  -33  -82  -64  -13  80  -105  9  -62  -68  -28  -48  -123  -125  74  -31  124  -95  -19  28  18  90  -84  71  83  -127  112  -81  28  4  49  8  -71  29  -25  106  -36  -86  -78  29  82  -127  -121  -82  -80  -96  55  43  -19  51  9  -116  0  -83  -2  58  97  49  0  104  -15  77  -4  0  -12  -25  55  84  57  35  119  -95  29  -93  -90  -47  -88  72  56  -4  117  -95  82  -79  -102  115  -55  40  -95  70  120  73  -120  78  3  -128  -53  -87  -96  93  118  125  71  -49  -34  125  -94  0  123  76  6  117  60  -88  -86  -85  17  -42  -21  -1  17  -14  -88  -2  30  123  -74  37  -36  32  106  14  -13  42  -112  -127  43  -118  -56  -101  -76  7  -110  120  66  -41  -89  16  56  -60  -23  -64  -22  -1  108  -126  76  -74  11  -70  -115  57  -37  83  30  108  91  -63  -48  -106  -40  28  115  8  -17  27  -111  -57  -54  46  -30  -6  -83  -4  62  -91  -29  50  -80  103  98  -5  -25  -62  -7  -35  -42  111  -32  106  -31  125  -93  -99  -124  6  77  91  63  113  27  59  84  75  -62  52  -14  -88  52  122  125  -37  -12  7  82  54  2  102  25  -83  -41  -112  7  -112  69  -30  114  92  109  2  -106  -75  -113  -62  28  79  71  57  37  89  -20  109  -110  32  90  -13  -59  47  -82  83  -126  -58  37  88  46  99  -115  -67  -119  -111  -22  -91  1  116  -78  31  -113  77  -16  -70  -80  9  -33  -54  -8  46  -25  -56  63  47  -74  105  -112  28  108  67  125  72  -24  3  10  49  15  -70  -90  -69  41  -115  -87  87  -9  -120  -125  14  -13  -106  112  72  -115  105  -99  53  116  10  -103  -45  46  -32  7  89  61  -12  118  -102  -32  -47  -99  -74  56  -11  -51  -68  -73  96  53  -18  73  -69  -53  8  -125  8  96  94  45  -3  -104  -68  125  47  11  -20  11  -107  -22  -45  -47  57  -125  53  118  -12  3  102  4  22  114  125  104  -81  -8  -111  71  -7  15  69  -115  86  -127  -81  -33  -50  11  88  -38  -21  -113  -74  -104  -113  107  -64  118  -20  -61  -117  -43  11  84  34  -21  -9  -64  -42  46  89  2  -38  -123  -68  68  80  -122  -79  -12  9  86  -119  60  -84  -14  -8  -21  -11  -75  -56  45  -88  43  89  126  -35  127  117  73  30  115  75  -15  111  -1  -78  31  -126  -116  -115  126  -59  -23  86  108  109  39  127  90  77 
+       Computed: 38 22 8b 3d 69 37 ba cf 4c d3 65 1d ae f9 c7 c8 81 a8 d2 d4 bf e5 e8 22 2a bc e2 73 6f 70 40 91 64 38 53 f0 75 ec 0d 6d 89 2c 0b 0a 2c fa 1c 19 86 d6 3c c4 96 10 97 63 51 9f 22 2d 66 38 7c 24 2f 77 1b 96 58 db 0a ea 5f 2b f7 b9 e7 06 b2 b9 fc c8 35 56 f3 67 77 98 e4 4a bb 17 ae 6a 48 3b e2 1d a9 24 37 76 cb ea 8f 0d 57 58 ab 4f 67 c3 82 57 aa cd f7 0e 51 cd 2e 4e 9b ac 4a 86 5b ae 26 3c cc 78 ca 7f 81 48 11 fc 26 a5 c4 eb b8 4d 7b 9a 41 5b 7f 6f 01 b5 54 3d d9 be 42 30 46 fd 58 47 1a d6 a4 46 f8 f0 23 70 d4 e7 07 0f 5a ab 6b 4d ec 05 f1 c8 e5 cf 3b c8 28 95 57 19 b5 5c 6c 2f a4 2f a9 c6 3f db d6 eb cf 57 dc 24 93 1a 94 2d e4 21 ac cf 64 03 40 01 d6 95 a5 9a 6e f0 6d 12 48 35 89 e9 a8 4d e4 2a c0 cd fc cd 02 32 f2 b6 d5 2a f3 00 c7 1f 1b e6 6f f6 93 70 ad 18 53 d9 2f eb d0 5e 50 a0 ba 2f ad 3a af 16 60 e8 26 ca 06 d0 0a a6 c8 31 8a 68 3f 33 46 e1 11 c8 4c 32 7d 6e d9 5d e9 b4 ba fd 1f 10 f3 1f 1b 0a 1d d7 77 09 92 76 df ea 46 b6 a4 36 f0 c0 9d b6 66 b8 3f d4 f3 6f 9b 32 a4 56 e3 97 de 4d 29 4c 21 31 d9 45 24 ab dc 55 cc 21 84 9d 57 70 10 d5 50 6f 2e 7f 1e 71 10 d5 c0 54 31 9d ec f5 e3 ab 7f 3c f0 de 1b 40 61 13 8d fc 04 b9 5b 2d 63 62 c6 41 41 ba 3a 71 0b 03 45 fa 65 9c cf 04 8e e1 01 9f 01 c6 98 4e 65 00 c6 bc fb c9 4b 0e 99 2e 1c 64 98 70 1b ad 09 ca 87 22 60 84 1d 10 4b c4 e6 ad 00 e3 f6 20 c3 6b e9 a2 15 ff 80 27 5d 9c a5 22 3f 37 23 cb ad e2 61 f3 7d ab 3e 5c ce b7 08 16 01 37 b7 f6 4d 1e 77 21 05 41 b2 ad 7d 43 1e 3b c9 aa 4a c0 e6 73 21 d0 a9 07 8a ba 2d ec c2 2a c9 f4 be 5a 25 13 28 76 4d e5 be 16 57 f0 cf f4 47 cb 60 a1 85 b6 07 40 6a 93 ad a7 c6 b3 5e 90 13 f5 87 f9 17 27 3b b0 c0 2a 7f cc f3 2b bf c7 01 67 53 9f 9a b8 54 b8 b5 40 92 ed 63 df ae c0 f3 50 97 09 c2 bc e4 d0 85 83 4a e1 7c a1 ed 1c 12 5a ac 47 53 81 70 af 1c 04 31 08 b9 1d e7 6a dc aa b2 1d 52 81 87 ae b0 a0 37 2b ed 33 09 8c 00 ad fe 3a 61 31 00 68 f1 4d fc 00 f4 e7 37 54 39 23 77 a1 1d a3 a6 d1 a8 48 38 fc 75 a1 52 b1 9a 73 c9 28 a1 46 78 49 88 4e 03 80 cb a9 a0 5d 76 7d 47 cf de 7d a2 00 7b 4c 06 75 3c a8 aa ab 11 d6 eb ff 11 f2 a8 fe 1e 7b b6 25 dc 20 6a 0e f3 2a 90 81 2b 8a c8 9b b4 07 92 78 42 d7 a7 10 38 c4 e9 c0 ea ff 6c 82 4c b6 0b ba 8d 39 db 53 1e 6c 5b c1 d0 96 d8 1c 73 08 ef 1b 91 c7 ca 2e e2 fa ad fc 3e a5 e3 32 b0 67 62 fb e7 c2 f9 dd d6 6f e0 6a e1 7d a3 9d 84 06 4d 5b 3f 71 1b 3b 54 4b c2 34 f2 a8 34 7a 7d db f4 07 52 36 02 66 19 ad d7 90 07 90 45 e2 72 5c 6d 02 96 b5 8f c2 1c 4f 47 39 25 59 ec 6d 92 20 5a f3 c5 2f ae 53 82 c6 25 58 2e 63 8d bd 89 91 ea a5 01 74 b2 1f 8f 4d f0 ba b0 09 df ca f8 2e e7 c8 3f 2f b6 69 90 1c 6c 43 7d 48 e8 03 0a 31 0f ba a6 bb 29 8d a9 57 f7 88 83 0e f3 96 70 48 8d 69 9d 35 74 0a 99 d3 2e e0 07 59 3d f4 76 9a e0 d1 9d b6 38 f5 cd bc b7 60 35 ee 49 bb cb 08 83 08 60 5e 2d fd 98 bc 7d 2f 0b ec 0b 95 ea d3 d1 39 83 35 76 f4 03 66 04 16 72 7d 68 af f8 91 47 f9 0f 45 8d 56 81 af df ce 0b 58 da eb 8f b6 98 8f 6b c0 76 ec c3 8b d5 0b 54 22 eb f7 c0 d6 2e 59 02 da 85 bc 44 50 86 b1 f4 09 56 89 3c ac f2 f8 eb f5 b5 c8 2d a8 2b 59 7e dd 7f 75 49 1e 73 4b f1 6f ff b2 1f 82 8c 8d 7e c5 e9 56 6c 6d 27 7f 5a 4d 
+       Expected: 38 22 8b 3d 69 37 ba cf 4c d3 65 1d ae f9 c7 c8 81 a8 d2 d4 bf e5 e8 22 2a bc e2 73 6f 70 40 91 64 38 53 f0 75 ec 0d 6d 89 2c 0b 0a 2c fa 1c 19 86 d6 3c c4 96 10 97 63 51 9f 22 2d 66 38 7c 24 2f 77 1b 96 58 db 0a ea 5f 2b f7 b9 e7 06 b2 b9 fc c8 35 56 f3 67 77 98 e4 4a bb 17 ae 6a 48 3b e2 1d a9 24 37 76 cb ea 8f 0d 57 58 ab 4f 67 c3 82 57 aa cd f7 0e 51 cd 2e 4e 9b ac 4a 86 5b ae 26 3c cc 78 ca 7f 81 48 11 fc 26 a5 c4 eb b8 4d 7b 9a 41 5b 7f 6f 01 b5 54 3d d9 be 42 30 46 fd 58 47 1a d6 a4 46 f8 f0 23 70 d4 e7 07 0f 5a ab 6b 4d ec 05 f1 c8 e5 cf 3b c8 28 95 57 19 b5 5c 6c 2f a4 2f a9 c6 3f db d6 eb cf 57 dc 24 93 1a 94 2d e4 21 ac cf 64 03 40 01 d6 95 a5 9a 6e f0 6d 12 48 35 89 e9 a8 4d e4 2a c0 cd fc cd 02 32 f2 b6 d5 2a f3 00 c7 1f 1b e6 6f f6 93 70 ad 18 53 d9 2f eb d0 5e 50 a0 ba 2f ad 3a af 16 60 e8 26 ca 06 d0 0a a6 c8 31 8a 68 3f 33 46 e1 11 c8 4c 32 7d 6e d9 5d e9 b4 ba fd 1f 10 f3 1f 1b 0a 1d d7 77 09 92 76 df ea 46 b6 a4 36 f0 c0 9d b6 66 b8 3f d4 f3 6f 9b 32 a4 56 e3 97 de 4d 29 4c 21 31 d9 45 24 ab dc 55 cc 21 84 9d 57 70 10 d5 50 6f 2e 7f 1e 71 10 d5 c0 54 31 9d ec f5 e3 ab 7f 3c f0 de 1b 40 61 13 8d fc 04 b9 5b 2d 63 62 c6 41 41 ba 3a 71 0b 03 45 fa 65 9c cf 04 8e e1 01 9f 01 c6 98 4e 65 00 c6 bc fb c9 4b 0e 99 2e 1c 64 98 70 1b ad 09 ca 87 22 60 84 1d 10 4b c4 e6 ad 00 e3 f6 20 c3 6b e9 a2 15 ff 80 27 5d 9c a5 22 3f 37 23 cb ad e2 61 f3 7d ab 3e 5c ce b7 08 16 01 37 b7 f6 4d 1e 77 21 05 41 b2 ad 7d 43 1e 3b c9 aa 4a c0 e6 73 21 d0 a9 07 8a ba 2d ec c2 2a c9 f4 be 5a 25 13 28 76 4d e5 be 16 57 f0 cf f4 47 cb 60 a1 85 b6 07 40 6a 93 ad a7 c6 b3 5e 90 13 f5 87 f9 17 27 3b b0 c0 2a 7f cc f3 2b bf c7 01 67 53 9f 9a b8 54 b8 b5 40 92 ed 63 df ae c0 f3 50 97 09 c2 bc e4 d0 85 83 4a e1 7c a1 ed 1c 12 5a ac 47 53 81 70 af 1c 04 31 08 b9 1d e7 6a dc aa b2 1d 52 81 87 ae b0 a0 37 2b ed 33 09 8c 00 ad fe 3a 61 31 00 68 f1 4d fc 00 f4 e7 37 54 39 23 77 a1 1d a3 a6 d1 a8 48 38 fc 75 a1 52 b1 9a 73 c9 28 a1 46 78 49 88 4e 03 80 cb a9 a0 5d 76 7d 47 cf de 7d a2 00 7b 4c 06 75 3c a8 aa ab 11 d6 eb ff 11 f2 a8 fe 1e 7b b6 25 dc 20 6a 0e f3 2a 90 81 2b 8a c8 9b b4 07 92 78 42 d7 a7 10 38 c4 e9 c0 ea ff 6c 82 4c b6 0b ba 8d 39 db 53 1e 6c 5b c1 d0 96 d8 1c 73 08 ef 1b 91 c7 ca 2e e2 fa ad fc 3e a5 e3 32 b0 67 62 fb e7 c2 f9 dd d6 6f e0 6a e1 7d a3 9d 84 06 4d 5b 3f 71 1b 3b 54 4b c2 34 f2 a8 34 7a 7d db f4 07 52 36 02 66 19 ad d7 90 07 90 45 e2 72 5c 6d 02 96 b5 8f c2 1c 4f 47 39 25 59 ec 6d 92 20 5a f3 c5 2f ae 53 82 c6 25 58 2e 63 8d bd 89 91 ea a5 01 74 b2 1f 8f 4d f0 ba b0 09 df ca f8 2e e7 c8 3f 2f b6 69 90 1c 6c 43 7d 48 e8 03 0a 31 0f ba a6 bb 29 8d a9 57 f7 88 83 0e f3 96 70 48 8d 69 9d 35 74 0a 99 d3 2e e0 07 59 3d f4 76 9a e0 d1 9d b6 38 f5 cd bc b7 60 35 ee 49 bb cb 08 83 08 60 5e 2d fd 98 bc 7d 2f 0b ec 0b 95 ea d3 d1 39 83 35 76 f4 03 66 04 16 72 7d 68 af f8 91 47 f9 0f 45 8d 56 81 af df ce 0b 58 da eb 8f b6 98 8f 6b c0 76 ec c3 8b d5 0b 54 22 eb f7 c0 d6 2e 59 02 da 85 bc 44 50 86 b1 f4 09 56 89 3c ac f2 f8 eb f5 b5 c8 2d a8 2b 59 7e dd 7f 75 49 1e 73 4b f1 6f ff b2 1f 82 8c 8d 7e c5 e9 56 6c 6d 27 7f 5a 4d 
+test_hash T10: passed
+
+Test11: block_size = 128, Input is from file a_tale_of_two_cities.txt
+
+User input: 
+
+ 53  13  109  91  -107  -70  -125  -110  -96  50  -33  16  -45  40  -82  -2  12  49  112  0  56  -21  -127  -128  -27  -110  -36  -34  -27  45  84  -119  -128  115  -93  -96  -24  21  -55  -115  -17  7  97  -13  -4  56  99  -23  -15  42  -92  56  -2  -112  -94  32  -66  94  -116  -46  -21  117  93  -112  14  61  -39  2  65  -113  94  -76  100  117  -50  -104  40  16  -49  -119  78  46  31  -113  -49  -37  -119  -122  -2  115  25  107  -53  95  122  -25  -98  -68  96  108  101  57  55  70  -27  26  119  115  81  20  -44  -55  -120  -58  47  -48  -108  -78  87  -112  65  -52  -117  -65  -114  -60  79  15 
+       Computed: 35 0d 6d 5b 95 ba 83 92 a0 32 df 10 d3 28 ae fe 0c 31 70 00 38 eb 81 80 e5 92 dc de e5 2d 54 89 80 73 a3 a0 e8 15 c9 8d ef 07 61 f3 fc 38 63 e9 f1 2a a4 38 fe 90 a2 20 be 5e 8c d2 eb 75 5d 90 0e 3d d9 02 41 8f 5e b4 64 75 ce 98 28 10 cf 89 4e 2e 1f 8f cf db 89 86 fe 73 19 6b cb 5f 7a e7 9e bc 60 6c 65 39 37 46 e5 1a 77 73 51 14 d4 c9 88 c6 2f d0 94 b2 57 90 41 cc 8b bf 8e c4 4f 0f 
+       Expected: 35 0d 6d 5b 95 ba 83 92 a0 32 df 10 d3 28 ae fe 0c 31 70 00 38 eb 81 80 e5 92 dc de e5 2d 54 89 80 73 a3 a0 e8 15 c9 8d ef 07 61 f3 fc 38 63 e9 f1 2a a4 38 fe 90 a2 20 be 5e 8c d2 eb 75 5d 90 0e 3d d9 02 41 8f 5e b4 64 75 ce 98 28 10 cf 89 4e 2e 1f 8f cf db 89 86 fe 73 19 6b cb 5f 7a e7 9e bc 60 6c 65 39 37 46 e5 1a 77 73 51 14 d4 c9 88 c6 2f d0 94 b2 57 90 41 cc 8b bf 8e c4 4f 0f 
+test_hash T11: passed
+
+===== Testing hash checks =====
+Test1: Two hashes match ...
+check_hash T1: passed
+Test2: Two hashes match in first block_size bytes, hash2 has additional bytes ...
+check_hash T2: passed
+Test3: Two hashes don't match in first element ...
+check_hash T3: passed
+Test4: Two hashes don't match in last element ...
+check_hash T4: passed
