@@ -1,0 +1,196 @@
+body
+{
+	//background-color: AliceBlue;
+	margin: 0;
+	padding: 0;
+}
+h1 
+{
+	color: #6600CC;
+	text-align: center;
+}
+p.title 
+{	
+	color: #6600CC;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+p.subtitle
+{
+	color: #6600CC;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+footer
+{
+	font-size: 16px;
+	text-align: right;
+	font-style: italic;
+}
+/*div {
+	border: solid black 2px;
+	margin: 1px;
+	padding: 1px;
+	}
+*/
+#title{
+	background-image: url("SD.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+	background-color: white;
+	text-align: center;
+	height: 200px;
+	border: none;
+	padding: 0;
+	margin: 0;
+	}
+
+#footer
+{
+	margin-top: 25px;
+	height:40px;
+	float: right;
+	text-align: right;
+}
+.drop_menu {
+	background:#005555;
+	padding:0px;
+	margin:0;
+	list-style-type:none;
+	height:34px;
+	cursor: pointer;
+}
+.drop_menu li { 
+	float:left;
+	display: inline-block;
+	padding-left: 70px;
+	padding-right: 70px;
+}
+
+.drop_menu li a {
+	padding:0px 0px;
+	display:inline-block;
+	color:#fff;
+	text-decoration:none;
+	//text-align: center;
+	font:30px arial, verdana, sans-serif;
+}
+/* Submenu */
+.drop_menu ul {
+	position:absolute;
+	left:-9999px;
+	top:-9999px;
+	list-style-type:none;
+}
+.drop_menu li:hover { 
+	position:relative; 
+	background:#5FD367; 
+}
+.drop_menu li:hover ul {
+	left:0px;
+	top:30px;
+	background:#5FD367;
+	padding:5px;
+}
+
+.drop_menu li:hover ul li a {
+	padding:5px;
+	margin-top:5px;
+	display:block;
+	width:auto;
+	text-indent:0px;
+	background-color:#5FD367;
+	font:16px arial, verdana, sans-serif;
+}
+.drop_menu li:hover ul li a:hover { 
+	background:#005555; 
+	background-size: contain;
+}
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 700px;
+  max-height: 700px;
+  position: relative;
+  margin: auto;
+  z-index: -1;
+}
+* {box-sizing:border-box}
+body {font-family: Verdana,sans-serif;}
+.mySlides {display:none}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 750px;
+  max-height: 750px;
+  position: relative;
+  margin: auto;
+  display:block;
+  padding-left: 10%;
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+#map {
+  height: 100%;
+  width: 100%;
+   
+ }
+#formStyle{
+	margin: 20px;
+}

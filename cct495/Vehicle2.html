@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<!--<script src="index.js"></script>-->
+	<title>
+		SD - Smart Drive Automated Vehicle
+	</title>
+</head>
+<body>
+<div id="title">
+</div>
+<div class="drop">
+	<ul class="drop_menu">
+		<li><a href='SD.html'>Home</a>
+		</li>
+		<li><a href='Vehicle1.html'>Personal</a>
+		</li>
+		<li><a href='Vehicle2.html'>Commercial</a>
+		</li>
+		<li><a href='#'>About Us</a>
+		</li>
+		<li><a href='#'>Contact Us</a>
+		</li>
+	</ul>
+</div>
+<br>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: -73, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWk0Y4wpWSJBW5TAoecGfYUf4bMwcl5wQ&callback=initMap">
+    </script>
+<div id = "formStyle">
+<form action="forms.php" method="post">
+	<label for="origin" style="margin-left:2em;">Origin Address: </label><input id="origin" type="text" name="origin" style="margin-left:43px; padding-right:50px;"><br>
+	<label for="destination"style="margin-left:2em;">Destination Address: </label><input id="destination"type="text" name="destination" style = "padding-right:50px;"><br>
+	<label for="date" style="margin-left:2em;">Date: </label><input id="date" type="date" name="date" style="margin-left:123px; margin-top:2px;" ><br>
+	<label for="time" style="margin-left:2em;">Time: </label><input id="time" type="time" name="time" style="margin-left:123px; margin-top:2px;"><br>
+	<label for="product" style="margin-left:2em;">Product: </label><input id="product" type="text" name="product" style="margin-left:101px; margin-top:2px; padding-right:50px;"><br>
+<input type="submit" style="margin-left:2em;">
+</form>
+</div>
+</body>
+</html>
